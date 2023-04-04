@@ -1,15 +1,48 @@
-<html>
-    <head>
-        <title>Django Girls blog</title>
-    </head>
+{% extends 'blog/base.html' %}
+{% block content %}
 
-<div>
-    
-    {%for i in posts%}
-    <p>published: {{ i.published_date }}</p>
-    <h1><a href="">{{ i.title }}</a></h1>
-    <p>{{ i.text|linebreaksbr }}</p>
-    
-    {% endfor %}
+{% for post in posts %}
+    <div class="post">
+        <div class="date">
+            {{ post.published_date }}
+        </div>
+        <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>        <p>{{ post.text|linebreaksbr }}</p>
+    </div>
+{% endfor %}
 
+{% endblock %}
+
+
+<!-- {% load static %}
+
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="{% static 'css/blog.css' %}">
+
+
+
+<div class="page-header">
+    <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,cyrillic" rel="stylesheet" type="text/css">
+    <h1><a href="/">Django Girls Blog</a></h1>
 </div>
+
+
+
+<body>
+
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+                    {% for post in posts %}
+                        <div class="post">
+                            <div class="date">
+                                <p>Опубликовано: {{ post.published_date }}</p>
+                            </div>
+                            <h1><a href="">{{ post.title }}</a></h1>
+                            <p>{{ post.text|linebreaksbr }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+</body> -->
